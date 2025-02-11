@@ -1,9 +1,67 @@
-{% extends "core/base.html" %}
+{% extends "core/base.html" %}  {# Extends the base template "core/base.html" to inherit its structure #}
 
-{% block title %} Sign up {%endblock%}
+{% block title %} Sign up {% endblock %}  {# Defines the title of the page as "Sign up" #}
 
-{%block content%} 
-<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">
-  <h1 class="mb-6 text-3xl">Sign Up</h1>
+{% block content %}  {# Begins the content block that will be inserted into the base template #}
+
+<div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">  
+  {# A container div with styling for width, margin, padding, background color, and rounded corners #}
+
+  <h1 class="mb-6 text-3xl">Sign Up</h1>  
+  {# Heading for the sign-up form #}
+
+  <form method="post" action=".">  
+    {# The form tag sets the method to POST and submits data to the current URL #}
+
+    {% csrf_token %}  
+    {# CSRF token for security to prevent cross-site request forgery attacks #}
+
+    <div class="mb-3">
+      <label class="inline-block mb-2">Username</label><br />
+      {{ form.username }}  
+    </div>
+
+    <div class="mb-3">
+      <label class="inline-block mb-2">Email</label><br />
+      {{ form.email }}  
+    </div>
+
+    <div class="mb-3">
+      <label class="inline-block mb-2">Password</label><br />
+      {{ form.password1 }}  
+    </div>
+
+    <div class="mb-3">
+      <label class="inline-block mb-2">Confirm Password</label><br />
+      {{ form.password2 }}  
+    </div>
+
+    {% if form.errors or form.non_field_errors %}  
+    {# Checks if there are any form errors or non-field errors #}
+    
+    <div class="mb-3 p-6 bg-red-100 rounded-xl">  
+      {# Error message container with styling for padding, background color, and rounded corners #}
+
+      {% for field in form %}  
+      {{ field.errors }}  
+      {% endfor %}  
+      {# Loops through each field in the form and displays individual field errors #}
+
+      {{ form.non_field_errors }}  
+      {# Displays any general form errors that are not specific to a single field #}
+      
+    </div>
+
+    {% endif %}  
+
+    <button
+      class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white"
+    >
+      Submit
+    </button>  
+
+  </form>
 </div>
-{%endblock%}
+
+{% endblock %}  
+{# Ends the content block #}
