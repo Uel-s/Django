@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}  
 <!-- Extends the base template "core/base.html" to inherit its structure -->
 
-{% block title %} Sign up {% endblock %}  
+{% block title %} Log in {% endblock %}  
 <!-- Defines the title of the page as "Sign Up" -->
 
 {% block content %}  
@@ -10,7 +10,7 @@
 <div class="w-1/2 my-6 mx-auto p-6 bg-gray-100 rounded-xl">  
   <!-- A container div with Tailwind CSS classes for width, spacing, background color, and rounded corners -->
 
-  <h1 class="mb-6 text-3xl">Sign Up</h1>  
+  <h1 class="mb-6 text-3xl">Log in</h1>  
   <!-- Main heading for the signup form -->
 
   <form method="post" action=".">  
@@ -25,11 +25,7 @@
       <!-- Renders the username input field from the Django form -->
     </div>
 
-    <div class="mb-3">
-      <label class="inline-block mb-2">Email</label><br />
-      {{ form.email }}  
-      <!-- Renders the email input field from the Django form -->
-    </div>
+    
 
     <div class="mb-3">
       <label class="inline-block mb-2">Password</label><br />
@@ -37,11 +33,7 @@
       <!-- Renders the first password input field from the Django form -->
     </div>
 
-    <div class="mb-3">
-      <label class="inline-block mb-2">Confirm Password</label><br />
-      {{ form.password2 }}  
-      <!-- Renders the second password input field for confirmation -->
-    </div>
+   
 
     {% if form.errors or form.non_field_errors %}  
     <!-- Checks if there are any form validation errors (either field-specific or general errors) -->

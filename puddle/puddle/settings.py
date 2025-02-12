@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = "/login/" # unauthorized persons redirect to login.
+LOGIN_REDIRECT_URL = "/" # redirect to front page when logged in.
+LOGOUT_REDIRECT_URL = "/" # redirect to front page when logged in.
+
 
 # Application definition
 
