@@ -1,0 +1,40 @@
+{% extends "core/base.html" %}
+
+{%block title%}
+New Conversation
+{%endblock%}
+
+{%block content%}
+<h1 class="mb-6 text-3xl">
+    New Conversation
+</h1>
+
+<form method="post" action=".">
+
+  {%csrf_token%}
+  <div class="space-y-4">{{form.as_p}}</div>
+  <!--unauthorized access-->
+  {% if form.errors or form.non_field_errors %}  
+    <!-- Checks if there are any form validation errors (either field-specific or general errors) -->
+
+    <div class="mb-3 p-6 bg-red-100 rounded-xl">  
+      <!-- Error message container with Tailwind styling for padding, background color, and rounded corners -->
+
+      {% for field in form %}  
+      {{ field.errors }}  
+      {% endfor %}  
+      <!-- Loops through each form field and displays its associated error messages -->
+
+      {{ form.non_field_errors }}  
+      <!-- Displays general form errors that are not specific to any single field -->
+
+    </div>
+
+    {% endif %}
+    <button
+      class="mt-6 py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 rounded-xl text-white"
+    >
+      Send
+    </button> 
+</form>
+{%endblock%}
