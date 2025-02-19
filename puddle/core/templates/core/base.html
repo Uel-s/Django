@@ -40,23 +40,55 @@
     </div>
 
     <!-- Footer -->
-    <footer class="p-6 flex justify-between bg-gray-800">
-      <div class="w-2/3 pr-10">
-        <h3 class="mb-5 font-semibold text-gray-400">About</h3>
-        <p class="text-lg text-gray-500">
-          Welcome to Puddle, your go-to platform for amazing items. Stay connected with us.
-        </p>
-      </div>
-      <div class="w-1/3">
-        <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
-        <ul class="space-y-2">
-          <li><a href="{% url 'core:about' %}" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
-          <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
-          <li><a href="{% url 'core:privacy_policy' %}" class="text-lg text-teal-500 hover:text-teal-700">Privacy Policy</a></li>
-          <li><a href="{% url 'core:terms_of_use' %}" class="text-lg text-teal-500 hover:text-teal-700">Terms of Use</a></li>
+  <footer class="bg-teal-800 text-gray-400 py-4">
+  <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+    
+    <!-- About Section -->
+    <div class="md:w-2/3 text-center md:text-left mb-4 md:mb-0">
+      <h3 class="text-lg font-semibold text-gray-300">About Puddle</h3>
+      <p class="text-sm text-gray-400 leading-relaxed">
+        Your go-to platform for amazing items. Stay connected with us for updates and exclusive offers.
+      </p>
+    </div>
 
-        </ul>
-      </div>
-    </footer>
+    <!-- Navigation Links -->
+    <div class="md:w-1/3 text-center md:text-right">
+      <h3 class="text-lg font-semibold text-gray-300">Quick Links</h3>
+      <ul class="flex flex-wrap justify-center md:justify-end space-x-4 text-sm">
+        <li>
+          <a href="{% url 'core:about' %}" 
+             class="text-teal-300 hover:text-white hover:scale-110 hover:shadow-md hover:shadow-teal-500 transition-transform duration-300 ease-in-out">
+            About
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'core:contact' %}" 
+             class="text-teal-300 hover:text-white hover:scale-110 hover:shadow-md hover:shadow-teal-500 transition-transform duration-300 ease-in-out">
+            Contact
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'core:privacy_policy' %}" 
+             class="text-teal-300 hover:text-white hover:scale-110 hover:shadow-md hover:shadow-teal-500 transition-transform duration-300 ease-in-out">
+            Privacy
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'core:terms_of_use' %}" 
+             class="text-teal-300 hover:text-white hover:scale-110 hover:shadow-md hover:shadow-teal-500 transition-transform duration-300 ease-in-out">
+            Terms
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="mt-2 text-center text-xs text-gray-400">
+    &copy; 2025 Puddle. All rights reserved.
+  </div>
+</footer>
+
+
   </body>
 </html>
