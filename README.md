@@ -42,7 +42,7 @@ Puddle is a Django-based marketplace application designed to facilitate buying a
    ```
 7. Start the development server:
    ```bash
-   python manage.py runserver
+   python manage.py runserver.
    ```
 
 ## Usage
