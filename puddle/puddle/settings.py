@@ -1,6 +1,6 @@
-import dj_database_url
 import os
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,8 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security configurations for web service in render.
 DEBUG = os.environ.get("DEBUG", "False").lower()=="true"
-ALLOWED_HOSTS = os.environ.get( "ALLOWED_HOSTS").split(" ")
-SECRET_KEY = os.environ.get("SECRET_KEY")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split()
+
+SECRET_KEY = os.environ.get("SECRET_KEY", "AS7h0sWqmXE2LnNaNx7VrHO6w9myhAve@dpg")
 database_url = os.environ.get("DATABASE_URL")
 
 LOGIN_URL = "/login/" # unauthorized persons redirect to login.
@@ -70,16 +71,21 @@ WSGI_APPLICATION = 'puddle.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 # SQLite db
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 # overriding SQLite with PostgreSQL db
 
-DATABASES["default"] = dj_database_url.parse(database_url)
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "puddle_vic6",
+       "HOST":"dpg-cuvb2ii3esus73bnme70-a.frankfurt-postgres.render.com",
+       "USER":"puddle_vic6_user",
+       "PASSWORD":"AS7h0sWqmXE2LnNaNx7VrHO6w9myhAve",
+       "PORT":"5432"
+    }
+}
+
+
 
 
 
@@ -124,7 +130,5 @@ STATIC_URL = '/static/'
 MEDIA_URL = 'media/'
 MEDIA_ROOT= BASE_DIR / 'media'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
