@@ -11,7 +11,7 @@ Puddle is a Django-based marketplace application designed to facilitate buying a
 - Search and filter functionality for items
 - Responsive design with Tailwind CSS
 - Optimized mobile-friendly layouts for all pages
-- Consistent image sizing across the application
+- Consistent image sizing across the application.
 
 
 ## Installation Instructions
