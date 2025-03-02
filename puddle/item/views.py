@@ -1,63 +1,99 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
-from .forms import NewItemForm, EditItemForm
+from .forms import NewItemForm, EditItemForm, NewToyForm, NewFurnitureForm, NewClothesForm
 from .models import Item, Category
-
 
 # Browsing/searching
 def items(request):
-     query = request.GET.get("query", '')
-     category_id = request.GET.get('category',0)
-     categories = Category.objects.all()
-     items = Item.objects.filter(is_sold=False)
+    query = request.GET.get("query", '')
+    category_id = request.GET.get('category', 0)
+    categories = Category.objects.all()
+    items = Item.objects.filter(is_sold=False)
 
-     if category_id:
-          items = items.filter(category_id=category_id)
+    if category_id:
+        items = items.filter(category_id=category_id)
 
-     if query:
-          items = items.filter(Q(name__icontains=query)| Q(description__icontains=query))  # show specified item
-     return render(request, "item/items.html", {"items":items, "query":query, "categories":categories, "category_id":int(category_id)})
+    if query:
+        items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))  # show specified item
+    return render(request, "item/items.html", {"items": items, "query": query, "categories": categories, "category_id": int(category_id)})
 
-# return 404 if item's details  isn't available. 
-def detail(request,pk): #pk==primary-key
+# return 404 if item's details isn't available. 
+def detail(request, pk):  # pk==primary-key
     item = get_object_or_404(Item, pk=pk)
-    related_items = Item.objects.filter(category=item.category,is_sold=False).exclude(pk=pk)[0:3]
+    related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)[0:3]
 
-    return render (request, "item/detail.html",{
+    return render(request, "item/detail.html", {
         "item": item,
-        "related_items":related_items
+        "related_items": related_items
     })
 
 @login_required
 def new(request):
     if request.method == 'POST':
-        form = NewItemForm(request.POST,request.FILES)
+        form = NewItemForm(request.POST, request.FILES)
         if form.is_valid():
             item = form.save(commit=False)
             item.created_by = request.user
             item.save()
-
             return redirect("item:detail", pk=item.id)
-    else:  
-            form = NewItemForm()        
-            
-    return render(request,"item/form.html",{"form":form, "title":"New item",})
+    else:
+        form = NewItemForm()
+    return render(request, "item/form.html", {"form": form, "title": "New item",})
 
 @login_required
-def edit(request,pk):
+def new_toy(request):
+    if request.method == 'POST':
+        form = NewToyForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.created_by = request.user
+            item.save()
+            return redirect("item:detail", pk=item.id)
+    else:
+        form = NewToyForm()
+    return render(request, "item/form.html", {"form": form, "title": "New Toy",})
+
+@login_required
+def new_furniture(request):
+    if request.method == 'POST':
+        form = NewFurnitureForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.created_by = request.user
+            item.save()
+            return redirect("item:detail", pk=item.id)
+    else:
+        form = NewFurnitureForm()
+    return render(request, "item/form.html", {"form": form, "title": "New Furniture",})
+
+@login_required
+def new_clothes(request):
+    if request.method == 'POST':
+        form = NewClothesForm(request.POST, request.FILES)
+        if form.is_valid():
+            item = form.save(commit=False)
+            item.created_by = request.user
+            item.save()
+            return redirect("item:detail", pk=item.id)
+    else:
+        form = NewClothesForm()
+    return render(request, "item/form.html", {"form": form, "title": "New Clothes",})
+
+@login_required
+def edit(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
     if request.method == 'POST':
-        form = EditItemForm(request.POST,request.FILES, instance=item)
+        form = EditItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             form.save()
             return redirect("item:detail", pk=item.id)
-    else:  
-            form = EditItemForm(instance=item)                           
-    return render(request,"item/form.html",{"form":form, "title":"Edit item",})
+    else:
+        form = EditItemForm(instance=item)
+    return render(request, "item/form.html", {"form": form, "title": "Edit item",})
 
 @login_required
-def delete(request,pk):
+def delete(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
     item.delete()
     return redirect("dashboard:index")

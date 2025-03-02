@@ -37,6 +37,22 @@
 
     <hr class="my-6 border-gray-300" />
 
+    <!-- New Category Forms Links -->
+    <p class="text-lg font-semibold mb-2">Add New Item</p>
+    <ul class="w-full">
+      <li class="py-2 px-4 w-full rounded-lg hover:bg-gray-300 transition">
+        <a href="{% url 'item:new_toy' %}" class="text-teal-500">Add New Toy</a>
+      </li>
+      <li class="py-2 px-4 w-full rounded-lg hover:bg-gray-300 transition">
+        <a href="{% url 'item:new_furniture' %}" class="text-teal-500">Add New Furniture</a>
+      </li>
+      <li class="py-2 px-4 w-full rounded-lg hover:bg-gray-300 transition">
+        <a href="{% url 'item:new_clothes' %}" class="text-teal-500">Add New Clothes</a>
+      </li>
+    </ul>
+
+    <hr class="my-6 border-gray-300" />
+
     <!-- Clear Filters -->
     <p class="text-lg font-semibold">Clear filters</p>
     <ul>
