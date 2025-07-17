@@ -14,7 +14,7 @@ Puddle is a Django-based marketplace application designed to facilitate buying a
 - Consistent image sizing across the application.
 
 
-## Installation Instructions
+## Installation Instructions.
 1. Clone the repository:
    ```bash
    git clone git@github.com:Uel-s/Django.git
