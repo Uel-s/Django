@@ -44,8 +44,7 @@ Puddle is a Django-based marketplace application designed to facilitate buying a
    ```bash
    python manage.py runserver.
    ```
-
-## Usage
+.
 1. Access the application by navigating to `http://127.0.0.1:8000/` in your web browser.
 2. The application is fully responsive and works seamlessly on both mobile and desktop devices.
 
